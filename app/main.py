@@ -16,7 +16,6 @@ prediction = Prediction()
 @app.route('/predict', methods=['POST'])
 @cross_origin()
 def predict():
-    print("come")
     age = request.form['age(y)']
     career = request.form['career']
     exp = request.form['exp(y)']
@@ -33,9 +32,9 @@ def predict():
     website_graphics = request.form['website_graphics']
     website_functions = request.form['website_functions']
 
-    feat_lang = prediction.transform_input(language)
-    feat_web_pro_lang = prediction.transform_input(web_pro_lang)
-    feat_learning_src = prediction.transform_input(learning_src)
+    feat_lang = prediction.transform_input(language,2)
+    feat_web_pro_lang = prediction.transform_input(web_pro_lang,4)
+    feat_learning_src = prediction.transform_input(learning_src,4)
 
     tmp_str = str(age) + str(career) + str(exp) + \
         str(feat_lang) + str(feat_web_pro_lang) + str(UI_Libs) + \

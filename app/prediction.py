@@ -1,11 +1,9 @@
 import numpy as np
 import pandas as pd
-# import modin.pandas as pd
 from sklearn import svm
 from sklearn.model_selection import cross_val_score, cross_val_predict
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
-
 class Prediction():
     model = None
 
@@ -19,9 +17,16 @@ class Prediction():
     def __init__(self) :
         self.training()
 
-    # def feature_extract(self, data):
+    def padding(self, text, n):
+        i = len(text)
+        ans = ""
+        while i < n:
+            ans += "0"
+            i += 1
 
-    def transform_input(self, input):
+        return ans+text
+        
+    def transform_input(self, input, n):
         sum = 0;
         ans = ""
         for i in range(len(input)):
@@ -32,7 +37,9 @@ class Prediction():
             sum = int(sum/2)
             #print(sum)
 
-        return ans
+        return self.padding(ans,n)
+
+    
 
     def predict(self, data):
         return self.model.predict(data)
@@ -59,3 +66,4 @@ class Prediction():
         print("\n", classification_report(y, y_pred))
         self.model = clf_svm
 
+#pd = Prediction()
